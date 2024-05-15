@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollywood Bar Inventory Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #444;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .item {
+            background: white;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .item img {
+            max-width: 100%;
+        }
+        .item h3 {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .item p {
+            text-align: center;
+            color: #666;
+        }
+        .item input, .item button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+        footer {
+            background-color: #444;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Hollywood Bar Inventory Management</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="items">
+            <div class="item" id="item1">
+                <img src="path/to/image1.jpg" alt="Item 1">
+                <h3>Item 1</h3>
+                <p>Price: $10.00</p>
+                <p>In Stock: <span id="stock1">0</span></p>
+                <input type="number" id="input1" placeholder="Enter quantity bought">
+                <button onclick="buyItem('stock1', 'input1')">Add to Inventory</button>
+                <input type="number" id="sell1" placeholder="Enter quantity sold">
+                <button onclick="sellItem('stock1', 'sell1')">Sell</button>
+            </div>
+            <div class="item" id="item2">
+                <img src="path/to/image2.jpg" alt="Item 2">
+                <h3>Item 2</h3>
+                <p>Price: $15.00</p>
+                <p>In Stock: <span id="stock2">0</span></p>
+                <input type="number" id="input2" placeholder="Enter quantity bought">
+                <button onclick="buyItem('stock2', 'input2')">Add to Inventory</button>
+                <input type="number" id="sell2" placeholder="Enter quantity sold">
+                <button onclick="sellItem('stock2', 'sell2')">Sell</button>
+            </div>
+            <div class="item" id="item3">
+                <img src="path/to/image3.jpg" alt="Item 3">
+                <h3>Item 3</h3>
+                <p>Price: $20.00</p>
+                <p>In Stock: <span id="stock3">0</span></p>
+                <input type="number" id="input3" placeholder="Enter quantity bought">
+                <button onclick="buyItem('stock3', 'input3')">Add to Inventory</button>
+                <input type="number" id="sell3" placeholder="Enter quantity sold">
+                <button onclick="sellItem('stock3', 'sell3')">Sell</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Contact us at <a href="mailto:info@hollywoodbar.com" style="color: white;">info@hollywoodbar.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function buyItem(stockId, inputId) {
+            const stockElement = document.getElementById(stockId);
+            const inputElement = document.getElementById(inputId);
+            const quantity = parseInt(inputElement.value);
+            if (!isNaN(quantity) && quantity > 0) {
+                stockElement.textContent = parseInt(stockElement.textContent) + quantity;
+                inputElement.value = '';
+            } else {
+                alert('Please enter a valid quantity');
+            }
+        }
+
+        function sellItem(stockId, inputId) {
+            const stockElement = document.getElementById(stockId);
+            const inputElement = document.getElementById(inputId);
+            const quantity = parseInt(inputElement.value);
+            if (!isNaN(quantity) && quantity > 0) {
+                const currentStock = parseInt(stockElement.textContent);
+                if (quantity <= currentStock) {
+                    stockElement.textContent = currentStock - quantity;
+                    inputElement.value = '';
+                } else {
+                    alert('Not enough stock available');
+                }
+            } else {
+                alert('Please enter a valid quantity');
+            }
+        }
+    </script>
+</body>
+</html>
