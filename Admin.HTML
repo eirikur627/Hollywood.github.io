@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollywood Bar Inventory Management - Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #444;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .item {
+            background: white;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            width: 30%;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .item h3 {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .item input, .item button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+        footer {
+            background-color: #444;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Hollywood Bar Inventory Management - Admin</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="items">
+            <div class="item" id="item1">
+                <h3>Item 1</h3>
+                <input type="number" id="input1" placeholder="Enter quantity bought">
+                <button onclick="addToInventory('item1', 'input1')">Add to Inventory</button>
+            </div>
+            <div class="item" id="item2">
+                <h3>Item 2</h3>
+                <input type="number" id="input2" placeholder="Enter quantity bought">
+                <button onclick="addToInventory('item2', 'input2')">Add to Inventory</button>
+            </div>
+            <div class="item" id="item3">
+                <h3>Item 3</h3>
+                <input type="number" id="input3" placeholder="Enter quantity bought">
+                <button onclick="addToInventory('item3', 'input3')">Add to Inventory</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Contact us at <a href="mailto:info@hollywoodbar.com" style="color: white;">info@hollywoodbar.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function addToInventory(itemId, inputId) {
+            const quantity = parseInt(document.getElementById(inputId).value);
+            if (!isNaN(quantity) && quantity > 0) {
+                localStorage.setItem(itemId, (parseInt(localStorage.getItem(itemId) || '0') + quantity).toString());
+                document.getElementById(inputId).value = '';
+                alert('Inventory updated');
+            } else {
+                alert('Please enter a valid quantity');
+            }
+        }
+    </script>
+</body>
+</html>
